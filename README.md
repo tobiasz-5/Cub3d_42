@@ -7,3 +7,5 @@ Texture Mapping: Applies textures to walls for enhanced visual realism.
 
 This project provides a practical introduction to graphics programming and game development through the implementation of raycasting techniques.
 
+cub3d_bonus:
+<img width="1920" alt="Immagine 2025-01-23 160249" src="https://github.com/user-attachments/assets/cf760e0b-a278-4c6e-9f1c-709d51c89a9f" />
