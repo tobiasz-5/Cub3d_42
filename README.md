@@ -10,5 +10,5 @@ This project provides a practical introduction to graphics programming and game 
 cub3d_bonus:
 <img width="1920" alt="Immagine 2025-01-23 160249" src="https://github.com/user-attachments/assets/cf760e0b-a278-4c6e-9f1c-709d51c89a9f" />
 
-debug:
-<img width="541" alt="Immagine 2025-01-23 160451" src="https://github.com/user-attachments/assets/206242e0-e791-4dc4-92fc-411aa1d23007" />
+debug: <br/>
+<img width="1920" alt="Immagine 2025-01-23 160451" src="https://github.com/user-attachments/assets/206242e0-e791-4dc4-92fc-411aa1d23007" />
