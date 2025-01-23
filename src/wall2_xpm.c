@@ -6,13 +6,20 @@
 /*   By: tschetti <tschetti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/27 16:45:19 by tschetti          #+#    #+#             */
-/*   Updated: 2025/01/16 10:02:20 by tschetti         ###   ########.fr       */
+/*   Updated: 2025/01/23 12:34:11 by tschetti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-// load_textures.c (o direttamente in main.c)
+/*
+uso di mlx_xpm_file_to_image per caricare a schermo un xpm. 
+game->mlx puntatore al server,
+poi abbiamo il path del file, e infine larghezza e altezza
+mlx_get_data_addr ottiene l indirizzo dei dati dell'immagine,
+permettendo l'accesso a bpp, line_size e endian -> bit per pixel, 
+byte per riga, ordine dei byte
+*/
 void	load_a_texture(t_game *game, t_tex *texture, char *path)
 {
 	texture->img = mlx_xpm_file_to_image(game->mlx, path, &texture->width,
@@ -26,6 +33,7 @@ void	load_a_texture(t_game *game, t_tex *texture, char *path)
 			&texture->line_size, &texture->endian);
 }
 
+//carica le varie textures
 void	load_textures(t_game *game)
 {
 	load_a_texture(game, &game->tex_no, game->map.path_no);

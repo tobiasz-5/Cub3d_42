@@ -6,12 +6,22 @@
 /*   By: tschetti <tschetti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 01:35:27 by tschetti          #+#    #+#             */
-/*   Updated: 2025/01/17 17:24:16 by tschetti         ###   ########.fr       */
+/*   Updated: 2025/01/23 12:20:21 by tschetti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
+/*
+inizializza parametri per ray casting
+calcola la direzione nelle componenti x e y del raggio [cos e sin]
+determina in che cella della griglia si trova il giocatore
+se la componente x della direzione del raggio e' 0, il raggio non tagliera mai
+un bordo verticale(2d) di una cella(continuera a muoversi lungo y), 1e30 e' un
+approssimazione a infinito (stesso discorso per componente y), altrimenti 
+(se non e' 0) viene calcolata come il reciproco del coseno(o seno) della
+direzione del raggio [piu inclinazione piu tempo/distanza].
+*/
 void	init_ray_params2(t_ray_cast_params *params, t_game *game, float angle)
 {
 	params->ray_dir_x = cosf(angle);
@@ -29,15 +39,7 @@ void	init_ray_params2(t_ray_cast_params *params, t_game *game, float angle)
 }
 
 /*
-inizializza parametri per ray casting
-calcola la direzione nelle componenti x e y del raggio [cos e sin]
-determina in che cella della griglia si trova il giocatore
-se la componente x della direzione del raggio e' 0, il raggio non tagliera mai
-un bordo verticale(2d) di una cella(continuera a muoversi lungo y), 1e30 e' un
-approssimazione a infinito (stesso discorso per componente y), altrimenti 
-(se non e' 0) viene calcolata come il reciproco del coseno(o seno) della
-direzione del raggio [piu inclinazione piu tempo/distanza].
-seguono i movimenti del raggio nelle 4 direzioni
+movimenti del raggio nelle 4 direzioni
 quando il raggio si muove verso un bordo:
 side_dist = distanza_dal_bordo * (tempo per attraversare una cella)
 */

@@ -6,12 +6,19 @@
 /*   By: tschetti <tschetti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 08:22:52 by tschetti          #+#    #+#             */
-/*   Updated: 2025/01/14 11:32:29 by tschetti         ###   ########.fr       */
+/*   Updated: 2025/01/23 13:20:45 by tschetti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d_bonus.h"
 
+/*
+funzione per disegnare le mani del giocatore.
+x e y calcolano l'offset orizzontale e verticale del giocare [lo centrano]
+h e w sono altezza e larghezza della texture da disegnare, quindi le coordinate
+in pixel. put_pixel viene chiamata solo per i pixel non 0 [ovvero 0x000000]
+e' un workaround per non disegnare lo sfondo nero della texture
+*/
 void	draw_hands(t_game *game)
 {
 	int	x;
