@@ -1,16 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   about_textures.c                                   :+:      :+:    :+:   */
+/*   textures.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tschetti <tschetti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 02:14:35 by tschetti          #+#    #+#             */
-/*   Updated: 2025/01/15 20:40:34 by tschetti         ###   ########.fr       */
+/*   Updated: 2025/01/24 18:21:40 by tschetti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
+
+void	free_gun_frames(t_game *game)
+{
+	int	i;
+
+	i = 0;
+	while (i <= 4)
+	{
+		if (game->player.gun_frames[i].img != NULL)
+			mlx_destroy_image(game->mlx, game->player.gun_frames[i].img);
+		i++;
+	}
+	free(game->player.gun_frames);
+	game->player.gun_frames = NULL;
+}
 
 /*
 sceglie quale texture applicare al muro colpito dal raggio.

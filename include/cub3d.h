@@ -6,7 +6,7 @@
 /*   By: tschetti <tschetti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/08 18:21:13 by mapichec          #+#    #+#             */
-/*   Updated: 2025/01/23 18:15:35 by tschetti         ###   ########.fr       */
+/*   Updated: 2025/01/24 18:22:53 by tschetti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <math.h>
 # include <limits.h>
 # include <stdlib.h>
+# include <time.h>
 # include "./colors.h"
 # include "../libft/libft.h"
 # include "../minilibx-linux/mlx.h"
@@ -30,6 +31,7 @@
 # define ESC 65307
 # define V 118
 # define M 109
+# define SPACE_KEY 32
 # define PI 3.141592653
 # define BLOCK 81
 # define LEFT 65361
@@ -169,9 +171,12 @@ typedef struct s_play
 	int		key_right;
 	int		left_rotate;
 	int		right_rotate;
-	void	*hands;
+	// void	*hands;
 	int		render_mode;
 	int		minimap_view;
+	t_tex	*gun_frames;
+	int		gun_current_frame;
+	int		is_shooting;
 }			t_play;
 
 typedef struct s_render_2d
@@ -221,6 +226,15 @@ typedef struct s_mini
 	int		minimap_colors;
 }			t_mini;
 
+typedef struct s_gun_frames
+{
+	int	x;
+	int	y;
+	int	w;
+	int	h;
+	int	color;
+}	t_gun_frames;
+
 typedef struct s_map
 {
 	char	*path_no;
@@ -229,7 +243,7 @@ typedef struct s_map
 	char	*path_ea;
 	char	*pathxpm;
 	char	**mtx2;
-	char	*path_hands;
+	// char	*path_hands;
 	int		ceiling_color;
 	int		floor_color;
 	int		width;
@@ -262,7 +276,7 @@ typedef struct s_game
 	int		bpp;
 	int		line_size;
 	int		endian;
-	t_tex	tex_hands;
+	// t_tex	tex_hands;
 	t_tex	tex_no;
 	t_tex	tex_so;
 	t_tex	tex_we;
@@ -325,6 +339,7 @@ char	**copy_map_in_mtx2(t_map *map);
 int		init_map(t_map *map, t_play *player);
 void	free_matrix2(char **map);
 void	count_map_dimensions(t_map *map);
+void	exit_game(t_game *game);
 
 void	put_pixel(int x, int y, int color, t_game *game);
 void	clear_image(t_game *game);
@@ -343,7 +358,7 @@ char	*get_next_line(int fd);
 void	load_textures(t_game *game);
 float	cast_ray_dda_side(t_game *game, float angle, t_ray_result *result);
 void	render_3d_view(t_game *game);
-void	draw_hands(t_game *game);
+// void	draw_hands(t_game *game);
 
 void	draw_map(t_game *game, t_render_2d *values);
 void	draw_player(t_game *game, t_render_2d *values);
@@ -365,5 +380,6 @@ void	init_render_3d_prop(t_3d_properties *prop, float angle);
 void	init_params_for_draw_single_3d_ray(t_draw_data *dd,
 			t_3d_properties *prop, t_game *game);
 float	cast_ray_dda_side(t_game *game, float angle, t_ray_result *result);
+void	free_gun_frames(t_game *game);
 
 #endif
