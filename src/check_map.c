@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marco <marco@student.42.fr>                +#+  +:+       +#+        */
+/*   By: tschetti <tschetti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 16:04:54 by marco             #+#    #+#             */
-/*   Updated: 2025/01/18 18:39:14 by marco            ###   ########.fr       */
+/*   Updated: 2025/01/26 11:35:14 by tschetti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static	int	zero_no_wall(char **tmp, t_map *map)
 	i = 0;
 	while (tmp[map->ht][i] != '\0')
 	{
-		if (tmp[map->ht][i] == '0')
+		if (tmp[map->ht][i] == '0' || tmp[map->ht][i] == '2')
 		{
 			if (i == 0 || map->ht == 0 || map->ht == (map->len_map - 1))
 				return (printf("Error!\n"));

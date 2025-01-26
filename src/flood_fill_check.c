@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   flood_fill_check.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marco <marco@student.42.fr>                +#+  +:+       +#+        */
+/*   By: tschetti <tschetti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 15:42:59 by marco             #+#    #+#             */
-/*   Updated: 2025/01/18 17:42:24 by marco            ###   ########.fr       */
+/*   Updated: 2025/01/26 11:39:27 by tschetti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	map_isnt_close(int x, int y, char **tmp, int len)
 		return ;
 	if (tmp[x][y] == '\0')
 		return ;
-	if (!ft_strchr_2("10NSEW", tmp[x][y]))
+	if (!ft_strchr_2("10NSEW2", tmp[x][y]))
 		return ;
 	tmp[x][y] = 'C';
 	map_isnt_close(x, y + 1, tmp, len);

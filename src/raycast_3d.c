@@ -6,7 +6,7 @@
 /*   By: tschetti <tschetti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 01:35:27 by tschetti          #+#    #+#             */
-/*   Updated: 2025/01/23 17:15:24 by tschetti         ###   ########.fr       */
+/*   Updated: 2025/01/26 19:22:56 by tschetti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,8 +96,12 @@ void	perform_dda(t_ray_cast_params *params, t_game *game)
 			params->map_y += params->step_y;
 			params->side_local = 1;
 		}
-		if (game->map.mtx2[params->map_y][params->map_x] == '1')
+		if (game->map.mtx2[params->map_y][params->map_x] == '1'
+			|| game->map.mtx2[params->map_y][params->map_x] == '2')
+		{
 			hit = 1;
+			params->hit_tile = game->map.mtx2[params->map_y][params->map_x];
+		}
 	}
 }
 
@@ -130,6 +134,7 @@ float	cast_ray_dda_side(t_game *game, float angle, t_ray_result *result)
 		result->hit_x = params.hit_x;
 		result->hit_y = params.hit_y;
 		result->side = params.side_local;
+		result->tile = params.hit_tile;
 	}
 	return (params.perp_wall_dist * BLOCK);
 }

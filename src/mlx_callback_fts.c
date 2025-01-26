@@ -6,7 +6,7 @@
 /*   By: tschetti <tschetti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 20:19:23 by tschetti          #+#    #+#             */
-/*   Updated: 2025/01/24 18:24:07 by tschetti         ###   ########.fr       */
+/*   Updated: 2025/01/26 19:33:56 by tschetti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ void	end_clean(t_game *game)
 
 void	exit_game(t_game *game)
 {
+	if (game->door.img != NULL) // Controlla se la texture "door" è stata caricata
+		mlx_destroy_image(game->mlx, game->door.img);
 	if (game->player.gun_frames != NULL)
 		free_gun_frames(game);
 	if (game->tex_ea.img != NULL)
@@ -81,6 +83,8 @@ int	key_press(int keycode, t_play *player)
 		player->render_mode = !player->render_mode;
 	else if (keycode == M)
 		player->minimap_view = !player->minimap_view;
+	else if (keycode == E)
+		toggle_door(player->game);
 	manage_space_key(keycode, player);
 	return (0);
 }

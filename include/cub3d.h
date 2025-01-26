@@ -6,7 +6,7 @@
 /*   By: tschetti <tschetti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/08 18:21:13 by mapichec          #+#    #+#             */
-/*   Updated: 2025/01/24 18:22:53 by tschetti         ###   ########.fr       */
+/*   Updated: 2025/01/26 19:03:32 by tschetti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@
 # define ESC 65307
 # define V 118
 # define M 109
+# define E 101
 # define SPACE_KEY 32
 # define PI 3.141592653
 # define BLOCK 81
@@ -42,6 +43,7 @@ typedef struct s_ray_result
 	float	hit_x;
 	float	hit_y;
 	int		side;
+	char	tile;
 }			t_ray_result;
 
 typedef struct s_ray_cast_params
@@ -57,6 +59,7 @@ typedef struct s_ray_cast_params
 	int		map_x;
 	int		map_y;
 	int		side_local;
+	char	hit_tile;
 	float	perp_wall_dist;
 	float	hit_x;
 	float	hit_y;
@@ -281,6 +284,7 @@ typedef struct s_game
 	t_tex	tex_so;
 	t_tex	tex_we;
 	t_tex	tex_ea;
+	t_tex	door;
 	t_play	player;
 	t_map	map;
 	t_tex	my_tex;
@@ -374,12 +378,14 @@ void	draw_single_3d_ray(t_game *game, int screen_col,
 
 int		get_tex_color(t_tex *tex, int tx, int ty);
 
-t_tex	*pick_texture(t_game *game, t_3d_properties *prop);
+// t_tex	*pick_texture(t_game *game, t_3d_properties *prop);
 int		compute_tex_x(t_tex *used_tex, t_3d_properties *prop);
 void	init_render_3d_prop(t_3d_properties *prop, float angle);
 void	init_params_for_draw_single_3d_ray(t_draw_data *dd,
 			t_3d_properties *prop, t_game *game);
 float	cast_ray_dda_side(t_game *game, float angle, t_ray_result *result);
 void	free_gun_frames(t_game *game);
+t_tex	*pick_texture(t_game *game, t_3d_properties *prop, char tile);
+void	toggle_door(t_game *game); 
 
 #endif

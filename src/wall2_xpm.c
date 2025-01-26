@@ -6,7 +6,7 @@
 /*   By: tschetti <tschetti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/27 16:45:19 by tschetti          #+#    #+#             */
-/*   Updated: 2025/01/24 17:42:21 by tschetti         ###   ########.fr       */
+/*   Updated: 2025/01/26 19:55:44 by tschetti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,5 +87,6 @@ void	load_textures(t_game *game)
 	load_a_texture(game, &game->tex_so, game->map.path_so);
 	load_a_texture(game, &game->tex_we, game->map.path_we);
 	load_a_texture(game, &game->tex_ea, game->map.path_ea);
+	load_a_texture(game, &game->door, "textures/a.xpm");
 	load_gun_frames(game);
 }

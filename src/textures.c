@@ -6,11 +6,34 @@
 /*   By: tschetti <tschetti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 02:14:35 by tschetti          #+#    #+#             */
-/*   Updated: 2025/01/24 18:21:40 by tschetti         ###   ########.fr       */
+/*   Updated: 2025/01/26 19:37:24 by tschetti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
+
+void	toggle_door(t_game *game)
+{
+	double	newx;
+	double	newy;
+	int		tile_x;
+	int		tile_y;
+	char	cell;
+
+	newx = game->player.x + cos(game->player.angle);
+	newy = game->player.y + sin(game->player.angle);
+	tile_x = (int)newx;
+	tile_y = (int)newy;
+	cell = game->map.mtx2[tile_y][tile_x];
+	if (cell == '2')
+		game->map.mtx2[tile_y][tile_x] = '3';
+	else if (cell == '3')
+	{
+		if ((int)game->player.x == tile_x && (int)game->player.y == tile_y)
+			return ;
+		game->map.mtx2[tile_y][tile_x] = '2';
+	}
+}
 
 void	free_gun_frames(t_game *game)
 {
@@ -39,8 +62,10 @@ alla posizione del giocatore, [tenere a mente che coordinate negative non
 esistono in questo tipo di piano (minilibx/rendering grafico), quindi sono
 negative rispetto al giocatore])
 */
-t_tex	*pick_texture(t_game *game, t_3d_properties *prop)
+t_tex	*pick_texture(t_game *game, t_3d_properties *prop, char tile)
 {
+	if (tile == '2')
+		return (&game->door);
 	if (prop->side_local == 0)
 	{
 		if (prop->ray_dir_x > 0)
