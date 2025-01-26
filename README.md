@@ -3,7 +3,7 @@ Cub3D is a 3D game project developed as part of the 42 school curriculum. It uti
 Raycasting: Simulates 3D perspective by projecting rays from the player's viewpoint to determine visibility and depth.<br/>
 MinilibX: Uses the MinilibX library for graphics rendering and window management.<br/>
 Event-Driven Programming: Implements event handling for user input, allowing for real-time interaction and control.<br/>
-Texture Mapping: Applies textures to walls for enhanced visual realism.
+Texture Mapping: Applies textures to walls (and other items) for enhanced visual realism.
 
 This project provides a practical introduction to graphics programming and game development through the implementation of raycasting techniques.
 
