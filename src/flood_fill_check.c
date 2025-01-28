@@ -6,11 +6,41 @@
 /*   By: tschetti <tschetti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 15:42:59 by marco             #+#    #+#             */
-/*   Updated: 2025/01/26 11:39:27 by tschetti         ###   ########.fr       */
+/*   Updated: 2025/01/28 12:29:48 by tschetti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
+
+#ifndef BONUS
+
+// flood fill
+void	map_isnt_close(int x, int y, char **tmp, int len)
+{
+	if (x < 0 || x > len - 1)
+		return ;
+	if (y < 0)
+		return ;
+	if (!tmp[x])
+		return ;
+	if (y >= ft_strlen(tmp[x]))
+		return ;
+	if (!tmp[x][y])
+		return ;
+	if (tmp[x][y] == '\0')
+		return ;
+	if (!ft_strchr_2("10NSEW", tmp[x][y]))
+		return ;
+	tmp[x][y] = 'C';
+	map_isnt_close(x, y + 1, tmp, len);
+	map_isnt_close(x, y - 1, tmp, len);
+	map_isnt_close(x - 1, y, tmp, len);
+	map_isnt_close(x + 1, y, tmp, len);
+}
+
+#endif
+
+#ifdef BONUS
 
 // flood fill
 void	map_isnt_close(int x, int y, char **tmp, int len)
@@ -35,6 +65,8 @@ void	map_isnt_close(int x, int y, char **tmp, int len)
 	map_isnt_close(x - 1, y, tmp, len);
 	map_isnt_close(x + 1, y, tmp, len);
 }
+
+#endif
 
 // mi sposta la y della mappa al primo carattere non spazio
 void	move_to_first_char(char **tmp, t_map *map)

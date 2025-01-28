@@ -6,7 +6,7 @@
 /*   By: tschetti <tschetti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 20:19:23 by tschetti          #+#    #+#             */
-/*   Updated: 2025/01/26 19:33:56 by tschetti         ###   ########.fr       */
+/*   Updated: 2025/01/28 12:24:31 by tschetti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	end_clean(t_game *game)
 
 void	exit_game(t_game *game)
 {
-	if (game->door.img != NULL) // Controlla se la texture "door" è stata caricata
+	if (game->door.img != NULL)
 		mlx_destroy_image(game->mlx, game->door.img);
 	if (game->player.gun_frames != NULL)
 		free_gun_frames(game);
